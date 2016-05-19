@@ -3,7 +3,7 @@ import pygame
 import time
 
 ID = 123456 # ID of Player connecting
-TCP_IP = '127.0.0.1'
+TCP_IP = 'kirapi'
 TCP_PORT = 1234
 BUFFER_SIZE = 1024  
 RETRY = 5 
