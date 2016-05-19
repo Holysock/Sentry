@@ -4,7 +4,7 @@
 import socket
 import Player
 
-TCP_IP = '127.0.0.1'
+TCP_IP = 'kirapi'
 TCP_PORT = 1234
 BUFFER_SIZE = 1024 
 
