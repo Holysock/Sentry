@@ -40,7 +40,7 @@ def parse(date):
                 R = float(values[i+1:])
                 player.setLight(L)
                 player.shoot(R)
-                print L,R
+                #print L,R
                 break
           
     elif "HALT" in data[:4]:
