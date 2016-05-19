@@ -26,10 +26,10 @@ class motor:
         elif value < -100: value = -100
         if value > 0:
             GPIO.output(self.dirX, False)
-            pX.ChangeDutyCycle(value)
+            self.pX.ChangeDutyCycle(value)
         elif value < 0:
             GPIO.output(self.dirX, True)
-            pX.ChangeDutyCycle(value+100)
+            self.pX.ChangeDutyCycle(value+100)
             
             
             
