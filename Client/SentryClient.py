@@ -11,7 +11,7 @@ RETRY = 5
 #Joystick-stuff
 pygame.init()
 pygame.joystick.init()
-
+time.sleep(1)
 if pygame.joystick.get_count() > 0: 
     print "Client: Joystick has been initialized."
 else:
