@@ -3,8 +3,9 @@
 #
 import socket
 import Player
+import sys
 
-TCP_IP = 'kirapi'
+TCP_IP = sys.argv[1]
 TCP_PORT = 1234
 BUFFER_SIZE = 1024 
 

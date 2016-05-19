@@ -1,9 +1,10 @@
 import socket
 import pygame
 import time
+import sys
 
 ID = 123456 # ID of Player connecting
-TCP_IP = 'kirapi'
+TCP_IP = argv[1]
 TCP_PORT = 1234
 BUFFER_SIZE = 1024  
 RETRY = 5 
