@@ -3,7 +3,7 @@ import RPi.GPIO as GPIO
 class motor:
     pwmY,dirY,pwmX,dirX,laser = 12,11,35,32,37
     
-    def __init__(self,ID):
+    def __init__(self):
         GPIO.setwarnings(False)
 
         GPIO.setmode(GPIO.BOARD)   
@@ -21,7 +21,7 @@ class motor:
         pX.start(0)
         pY.start(0)
         
-    def setSpeedX(value):
+    def setSpeedX(self,value):
         if value > 100: value = 100
         elif value < -100: value = -100
         if value > 0:
