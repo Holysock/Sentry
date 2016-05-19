@@ -1,5 +1,3 @@
-#from imutils.video import WebcamVideoStream
-#import cv2
 import RPi.GPIO as GPIO
 import time
 import readchar
@@ -23,12 +21,8 @@ pX = GPIO.PWM(pwmX, 8000)
 pX.start(0)
 pY.start(0)
 
-#vs = WebcamVideoStream(src=0).start()
-#frame = vs.read()
-
 while(True):
-#	frame = vs.read()
-#	cv2.imshow('Video',frame)
+
 	x = readchar.readchar()	
 	if(x == 'a'):
 		GPIO.output(dirX,False)
@@ -54,7 +48,4 @@ while(True):
 	elif(x == 'q'):
 		GPIO.cleanup()
 		exit()
-#	if cv2.waitKey(10) & 0xFF == ord('q'):
-#                GPIO.cleanup()
-#                break
 

@@ -11,7 +11,7 @@ BUFFER_SIZE = 1024
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind((TCP_IP, TCP_PORT))
 s.listen(1)
-ID = 0
+ID = 0 # Player ID, the IR diode "shoots" this code 
 
 def parse(date):
     if "RS" in data[:2]: #Parse Data into X and Y -> Controlls motor.
@@ -41,6 +41,13 @@ def parse(date):
                 player.shoot(R)
                 print L,R
                 break
+          
+    elif "HALT" in data[:4]:
+        print "Server: Command: HALT."
+        print "Server: Shutting down."
+        connection.close()
+        exit(0)
+        
     else:
         return 1
                     

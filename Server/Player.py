@@ -1,15 +1,4 @@
 #Player class. The Player does all the things regarding motorcontroll
-#import RPi.GPIO as GPIO
-
-pwmX, dirX, pwmY, dirY, Laser = 35,36,12,11,37
-
-#GPIO.setwarnings(False)
-#GPIO.setmode(GPIO.BOARD)
-#GPIO.setup(pwmY, GPIO.OUT)
-#GPIO.setup(dirY, GPIO.OUT)
-#GPIO.setup(dirX, GPIO.OUT)
-#GPIO.setup(pwmX, GPIO.OUT)
-#GPIO.setup(Laser, GPIO.OUT)
 
 class player:
     ID = 0
