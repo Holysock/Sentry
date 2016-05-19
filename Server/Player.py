@@ -15,7 +15,7 @@ class player:
     def moveSentry(self,data): 
         self.X = data[0]
         self.Y = data[1]
-        motor.setSpeedX(self.X)
+        self.motor.setSpeedX(self.X)
     def setLight(self,data):
         self.light = data 
     def shoot(self,data):
