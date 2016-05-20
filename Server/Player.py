@@ -16,6 +16,7 @@ class player:
         self.X = data[0]*100
         self.Y = data[1]*100
         self.motor.setSpeedX(self.X)
+        self.motor.setSpeedY(self.Y)
     def setLight(self,data):
         self.light = data 
     def shoot(self,data):

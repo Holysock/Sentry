@@ -44,5 +44,26 @@ class motor():
             self.dX.ChangeDutyCycle(0)
             self.pX.ChangeDutyCycle(0)
             
+    def setSpeedY(self,value):
+        if value > 100: value = 100
+        elif value < -100: value = -100
+        elif abs(value) < 20: value = 0
+        
+        if value < 0: 
+            value = ((abs(value)-20)/80.0)*100.0
+            self.dY.ChangeDutyCycle(100)
+            self.pY.ChangeDutyCycle(100-value)
+            print 100-value
+            
+        elif value > 0:
+            value = ((abs(value)-20)/80.0)*100.0
+            self.dY.ChangeDutyCycle(0)
+            self.pY.ChangeDutyCycle(value)
+            print value
+            
+        elif value == 0:
+            self.dY.ChangeDutyCycle(0)
+            self.pY.ChangeDutyCycle(0)
+            
             
              
