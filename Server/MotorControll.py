@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 
-class motor:
+class motor(GPIO):
     pwmY,dirY,pwmX,dirX,laser = 12,11,35,32,37
     GPIO.setwarnings(False)
     GPIO.setmode(GPIO.BOARD)   
@@ -25,10 +25,10 @@ class motor:
         if value > 100: value = 100
         elif value < -100: value = -100
         if value > 0:
-            #self.GPIO.output(self.dirX, False)
+            GPIO.output(self.dirX, False)
             self.pX.ChangeDutyCycle(value)
         elif value < 0:
-            self.GPIO.output(self.dirX, True)
+            GPIO.output(self.dirX, True)
             self.pX.ChangeDutyCycle(value+100)
             
             
