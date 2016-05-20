@@ -29,9 +29,11 @@ class motor():
         if value > 0:
             self.dX.ChangeDutyCycle(0)
             self.pX.ChangeDutyCycle(value)
+            print value
         elif value < 0:
             self.dX.ChangeDutyCycle(100)
             self.pX.ChangeDutyCycle(value+100)
+            print value 
             
             
             
