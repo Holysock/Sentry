@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 
-class motor(GPIO):
+class motor():
     pwmY,dirY,pwmX,dirX,laser = 12,11,35,32,37
     GPIO.setwarnings(False)
     GPIO.setmode(GPIO.BOARD)   
@@ -10,11 +10,13 @@ class motor(GPIO):
     GPIO.setup(pwmX, GPIO.OUT)
     GPIO.setup(laser, GPIO.OUT)
 
-    GPIO.output(dirX, False)
-    GPIO.output(dirY, False)
     GPIO.output(laser, False)
+    dY = GPIO.PWM(dirY, 1)
+    dX = GPIO.PWM(dirX, 1)
     pY = GPIO.PWM(pwmY, 8000)
     pX = GPIO.PWM(pwmX, 8000)
+    dX.start(0)
+    dY.start(0)
     pX.start(0)
     pY.start(0)
     
@@ -25,10 +27,10 @@ class motor(GPIO):
         if value > 100: value = 100
         elif value < -100: value = -100
         if value > 0:
-            GPIO.output(self.dirX, False)
+            self.dX.ChangeDutyCycle(0)
             self.pX.ChangeDutyCycle(value)
         elif value < 0:
-            GPIO.output(self.dirX, True)
+            self.dX.ChangeDutyCycle(100)
             self.pX.ChangeDutyCycle(value+100)
             
             
