@@ -32,13 +32,13 @@ class motor():
             value = ((abs(value)-20)/80.0)*100.0
             self.dX.ChangeDutyCycle(100)
             self.pX.ChangeDutyCycle(100-value)
-            print 100-value
+            print "X-axis:{0}".format(abs(value))
             
         elif value > 0:
             value = ((abs(value)-20)/80.0)*100.0
             self.dX.ChangeDutyCycle(0)
             self.pX.ChangeDutyCycle(value)
-            print value
+            print "X-axis:{0}".format(abs(value))
             
         elif value == 0:
             self.dX.ChangeDutyCycle(0)
@@ -53,13 +53,13 @@ class motor():
             value = ((abs(value)-20)/80.0)*100.0
             self.dY.ChangeDutyCycle(100)
             self.pY.ChangeDutyCycle(100-value)
-            print 100-value
+            print "Y-axis:{0}".format(abs(value))
             
         elif value > 0:
             value = ((abs(value)-20)/80.0)*100.0
             self.dY.ChangeDutyCycle(0)
             self.pY.ChangeDutyCycle(value)
-            print value
+            print "Y-axis:{0}".format(abs(value))
             
         elif value == 0:
             self.dY.ChangeDutyCycle(0)
