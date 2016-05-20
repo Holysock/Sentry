@@ -46,11 +46,11 @@ while pygame.joystick.get_count()>0:
     
     try:
         s.sendall("LS {0} {1}".format(stick_L[0],stick_L[1]))
-        time.sleep(0.1)
+        time.sleep(0.07)
         s.sendall("RS {0} {1}".format(stick_R[0],stick_R[1]))
-        time.sleep(0.1)
+        time.sleep(0.07)
         s.sendall("PD {0} {1}".format(pads[0],pads[1]))
-        time.sleep(0.1)
+        time.sleep(0.07)
         x = 0
     except socket.error, e:
         print "Client: Sending stuff failed: {0}".format(e)

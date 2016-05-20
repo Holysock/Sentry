@@ -11,8 +11,8 @@ class motor():
     GPIO.setup(laser, GPIO.OUT)
 
     GPIO.output(laser, False)
-    dY = GPIO.PWM(dirY, 1)
-    dX = GPIO.PWM(dirX, 1)
+    dY = GPIO.PWM(dirY, 8000)
+    dX = GPIO.PWM(dirX, 8000)
     pY = GPIO.PWM(pwmY, 8000)
     pX = GPIO.PWM(pwmX, 8000)
     dX.start(0)
@@ -33,7 +33,7 @@ class motor():
         elif value < 0:
             self.dX.ChangeDutyCycle(100)
             self.pX.ChangeDutyCycle(value+100)
-            print value 
+            print value+100 
             
             
             
