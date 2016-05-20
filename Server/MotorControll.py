@@ -28,15 +28,15 @@ class motor():
         elif value < -100: value = -100
         elif abs(value) < 20: value = 0
         
-        if value > 0: 
-            value = ((value-20)/80.0)*100.0
-            self.dX.ChangeDutyCycle(0)
-            self.pX.ChangeDutyCycle(value)
-            print value
-            
-        elif value < 0:
-            value = (((value+20)/80.0)*100.0)+100
+        if value < 0: 
+            value = ((abs(value)-20)/80.0)*100.0
             self.dX.ChangeDutyCycle(100)
+            self.pX.ChangeDutyCycle(100-value)
+            print 100-value
+            
+        elif value > 0:
+            value = ((abs(value)-20)/80.0)*100.0
+            self.dX.ChangeDutyCycle(0)
             self.pX.ChangeDutyCycle(value)
             print value
             
