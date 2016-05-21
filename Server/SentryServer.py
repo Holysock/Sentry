@@ -78,6 +78,33 @@ def parse(data):
             print "Y {0}".format(Y)
             player.moveSentry((X,Y))
         except ValueError as error:
+            print "Error in parse RX: {0}".format(error)
+            
+        if "PL" in data and ID:
+        try:
+            start = getIndexOfSub(data,"PL")
+            if start == -1 or not ('R' in data[start:] and '#' in data[start:]): 
+                raise ValueError("Parsing PL{float}X{float}#: Message corrupted")
+            stop = start+3
+            for ch in data[start+2:]:
+                if stop >= len(data): raise ValueError("Parsing PL{float}R{float}#: stop >= len(data)")
+                if ch == 'R': break
+                else: stop += 1
+            if stop > BUFFER_SIZE: raise ValueError("Parsing PL{float}X{float}#: stop > BUFFER_SIZE:")
+            L = float(data[start+2:stop-1])
+            print "L {0}".format(L)
+            start = stop     
+            stop = start+1
+            for ch in data[start+1:]:
+                if stop >= len(data): raise ValueError("Parsing PL{float}R{float}#: stop >= len(data)")
+                if ch == '#': break
+                else: stop += 1 
+            if stop > BUFFER_SIZE: raise ValueError("Parsing PL{float}R{float}#: stop > BUFFER_SIZE:")
+            R = float(data[start:stop])
+            print "R {0}".format(R)
+            player.setLight(L)
+            player.shoot(R)
+        except ValueError as error:
             print "Error in parse RX: {0}".format(error) 
         
         #if "ID" in data and not ID:

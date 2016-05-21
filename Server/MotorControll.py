@@ -10,11 +10,12 @@ class motor():
     GPIO.setup(pwmX, GPIO.OUT)
     GPIO.setup(laser, GPIO.OUT)
 
-    GPIO.output(laser, False)
+    LASER = GPIO.PWM(laser, 8000)
     dY = GPIO.PWM(dirY, 8000)
     dX = GPIO.PWM(dirX, 8000)
     pY = GPIO.PWM(pwmY, 8000)
     pX = GPIO.PWM(pwmX, 8000)
+    LASER.start(0)
     dX.start(0)
     dY.start(0)
     pX.start(0)
@@ -64,6 +65,10 @@ class motor():
         elif value == 0:
             self.dY.ChangeDutyCycle(0)
             self.pY.ChangeDutyCycle(0)
+            
+    def setLaser(self,value):
+        self.pY.ChangeDutyCycle(value*0.5+100)
+        print "Laser: [0]".format(value)
             
             
              

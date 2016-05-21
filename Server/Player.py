@@ -21,5 +21,5 @@ class player:
     def setLight(self,data):
         self.light = data 
     def shoot(self,data):
-        pass #later: pass ID to IR transmitter
+        self.motor.setLaser(data*100)
          
