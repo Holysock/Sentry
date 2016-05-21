@@ -43,7 +43,7 @@ def parse(data):
                 raise ValueError("Parsing ID{int}#: Message corrupted")
             stop = start+3
             for ch in data[start+2:]:
-                if stop >= len(data): raise ValueError("Parsing ID{int}#: stop >= len(data)")
+                if stop > len(data): raise ValueError("Parsing ID{int}#: stop >= len(data)")
                 if ch == '#': break
                 else: stop += 1
             if stop > BUFFER_SIZE: raise ValueError("Parsing ID{int}#: stop > BUFFER_SIZE:")

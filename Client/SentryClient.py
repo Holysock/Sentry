@@ -32,7 +32,7 @@ except socket.error, e:
     exit(1)
     
 try:
-    s.sendall("ID{0}#\n".format(ID))
+    s.sendall("ID{0}#".format(ID))
     time.sleep(0.25)
 except socket.error, e:
     print "Client: Sending Player ID: {0} failed: {1}".format(ID,e)
