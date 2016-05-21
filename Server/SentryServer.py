@@ -2,7 +2,7 @@
 
 #
 import socket
-#import Player
+import Player
 import sys
 
 TCP_IP = sys.argv[1]
@@ -35,26 +35,44 @@ def getIndexOfSub(data,sub):
         return -1
 
 def parse(data):
-    if "RX" in data:
+    global ID
+    if "ID" in data and not ID:
+        try:
+            start = getIndexOfSub(data,"ID")
+            if start == -1 or not '#' in data[start:]: 
+                raise ValueError("Parsing ID{int}#: Message corrupted")
+            stop = start+3
+            for ch in data[start+2:]:
+                if stop >= len(data): raise ValueError("Parsing ID{int}#: stop >= len(data)")
+                if ch == '#': break
+                else: stop += 1
+            if stop > BUFFER_SIZE: raise ValueError("Parsing ID{int}#: stop > BUFFER_SIZE:")
+            ID = int(data[start+2:stop-1])
+            print "ID {0}".format(ID)
+            player = Player.player(data[2:])
+        except ValueError as error:
+            print "Error in parse ID: {0}".format(error) 
+                            
+    if "RX" in data and ID:
         try:
             start = getIndexOfSub(data,"RX")
             if start == -1 or not ('Y' in data[start:] and '#' in data[start:]): 
-                raise ValueError("Message corrupted")
+                raise ValueError("Parsing RX{float}Y{float}#: Message corrupted")
             stop = start+3
             for ch in data[start+2:]:
-                if stop >= len(data): raise ValueError("stop >= len(data), 1")
+                if stop >= len(data): raise ValueError("Parsing RX{float}Y{float}#: stop >= len(data)")
                 if ch == 'Y': break
                 else: stop += 1
-            if stop > BUFFER_SIZE: raise ValueError("stop > BUFFER_SIZE:")
+            if stop > BUFFER_SIZE: raise ValueError("Parsing RX{float}Y{float}#: stop > BUFFER_SIZE:")
             X = float(data[start+2:stop-1])
             print "X {0}".format(X)
             start = stop     
             stop = start+1
             for ch in data[start+1:]:
-                if stop >= len(data): raise ValueError("stop >= len(data), 2")
+                if stop >= len(data): raise ValueError("Parsing RX{float}Y{float}#: stop >= len(data)")
                 if ch == '#': break
                 else: stop += 1 
-            if stop > BUFFER_SIZE: raise ValueError("stop > BUFFER_SIZE:")
+            if stop > BUFFER_SIZE: raise ValueError("Parsing RX{float}Y{float}#: stop > BUFFER_SIZE:")
             Y = float(data[start:stop])
             print "Y {0}".format(Y)   
         except ValueError as error:
@@ -62,6 +80,7 @@ def parse(data):
         
         #if "ID" in data and not ID:
         #    player = Player.player(data[2:])
+                    
                     
 print "Server: Server started."
 while 42:
