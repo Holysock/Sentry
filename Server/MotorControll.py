@@ -67,7 +67,7 @@ class motor():
             self.pY.ChangeDutyCycle(0)
             
     def setLaser(self,value):
-        print "Laser: {0}".format(value*0.5+50
+        print "Laser: {0}".format(value*0.5+50)
         self.LASER.ChangeDutyCycle(value*0.5+50)
             
             
