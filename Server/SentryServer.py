@@ -80,7 +80,7 @@ def parse(data):
         except ValueError as error:
             print "Error in parse RX: {0}".format(error)
             
-        if "PL" in data and ID:
+    if "PL" in data and ID:
         try:
             start = getIndexOfSub(data,"PL")
             if start == -1 or not ('R' in data[start:] and '#' in data[start:]): 
