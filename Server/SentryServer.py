@@ -13,6 +13,7 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind((TCP_IP, TCP_PORT))
 s.listen(1)
 ID = 0 # Player ID, the IR diode "shoots" this code 
+player = 0
 
 def getIndexOfSub(data,sub):
     if sub in data:
@@ -35,7 +36,7 @@ def getIndexOfSub(data,sub):
         return -1
 
 def parse(data):
-    global ID
+    global ID, player
     if "ID" in data and not ID:
         try:
             start = getIndexOfSub(data,"ID")
