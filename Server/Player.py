@@ -12,7 +12,8 @@ class player:
         print "Player: Player ID:" ,self.ID
         self.motor = MotorControll.motor()
         self.motor.__init__()
-    def moveSentry(self,data): 
+    def moveSentry(self,data):
+        print data 
         self.X = data[0]*100
         self.Y = data[1]*100
         self.motor.setSpeedX(self.X)

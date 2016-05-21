@@ -74,7 +74,8 @@ def parse(data):
                 else: stop += 1 
             if stop > BUFFER_SIZE: raise ValueError("Parsing RX{float}Y{float}#: stop > BUFFER_SIZE:")
             Y = float(data[start:stop])
-            print "Y {0}".format(Y)   
+            print "Y {0}".format(Y)
+            player.moveSentry((X,Y))
         except ValueError as error:
             print "Error in parse RX: {0}".format(error) 
         
