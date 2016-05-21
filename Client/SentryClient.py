@@ -38,6 +38,9 @@ except socket.error, e:
     print "Client: Sending Player ID: {0} failed: {1}".format(ID,e)
  
 x = 0
+last_stick_L = (0.0,0.0)
+last_stick_R = (0.0,0.0)
+last_pads = (0.0,0.0)
 while pygame.joystick.get_count()>0:
     pygame.event.get()
     stick_L = (stick.get_axis(0),stick.get_axis(1))
@@ -45,12 +48,12 @@ while pygame.joystick.get_count()>0:
     pads = (stick.get_axis(2),stick.get_axis(5))
     
     try:
-        s.sendall("LS {0} {1}".format(stick_L[0],stick_L[1]))
-        time.sleep(0.07)
-        s.sendall("RS {0} {1}".format(stick_R[0],stick_R[1]))
-        time.sleep(0.07)
-        s.sendall("PD {0} {1}".format(pads[0],pads[1]))
-        time.sleep(0.07)
+        if stick_L != last_stick_L: s.sendall("LX{0}Y{1}#".format(stick_L[0],stick_L[1]))
+        if stick_R != last_stick_R: s.sendall("RX{0}Y{1}#".format(stick_R[0],stick_R[1]))
+        if pads != last_pads:       s.sendall("PL{0}R{1}#".format(pads[0],pads[1]))
+        last_stick_L = stick_L 
+        last_stick_R = stick_R
+        last_pads = pads
         x = 0
     except socket.error, e:
         print "Client: Sending stuff failed: {0}".format(e)
@@ -58,8 +61,7 @@ while pygame.joystick.get_count()>0:
         if x == RETRY:
             print "Connection closed after {0} retries.".format(RETRY)
             s.close()
-            exit(1) 
-    
+            exit(1)     
 s.close()
 
 
