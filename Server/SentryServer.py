@@ -49,7 +49,7 @@ def parse(data):
             if stop > BUFFER_SIZE: raise ValueError("Parsing ID{int}#: stop > BUFFER_SIZE:")
             ID = int(data[start+2:stop-1])
             print "ID {0}".format(ID)
-            player = Player.player(data[2:])
+            player = Player.player(ID)
         except ValueError as error:
             print "Error in parse ID: {0}".format(error) 
                             
